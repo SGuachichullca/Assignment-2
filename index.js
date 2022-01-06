@@ -1,102 +1,135 @@
-//forEach()
-function myEach(arr, callback){
-for(let i = 0; i < arr.length; i++){
-    callback(arr[i])
-    }
-}
-let arr = [1, 2, 3, 4, 5]
-myEach(arr, (item) => console.log(item));
-//////////////////////////////////////////////
-
-//map()
-function myMap(arr, callback){
-let newarr = []
-for(let i = 0; i < arr.length; i++){
-    newarr.push(callback(arr[i]));
-    }
-
-    return newarr;
-}
-const mapResult = myMap(arr, x => x * 2);
-console.log(mapResult);
-//////////////////////////////////////////////
-
-//filter()
-function myFilter(arr, callback){
-    let newarr = [];
-    for(let i = 0; i < arr.length; i++){
-        newarr[i] = callback(arr[i]);
-        }
-        return newarr
+function main(){
+    let array = [1, 2, 3, 4, 5]
     
+    console.log ("each()");
+    console.log(myEach(array, element));
+
+    console.log ("map()");
+    console.log(myMap(array, element));
+
+    console.log ("filter()");
+    console.log(myFilter(array, lessThan));
+
+    console.log ("some()");
+    console.log(mySome(array, lessThan));
+
+    console.log ("every()");
+    console.log(myEvery(array, lessThan));
+
+    console.log ("reduce()");
+    console.log(myReduce(array, increment));
+
+    console.log ("includes()");
+    console.log(myIncludes(array, 4));
+
+    console.log ("indexOf()");
+    console.log(myIndexOf(array, 7));
+
+    console.log ("push()");
+    console.log (myPush(array, 6))
+    console.log(array);
+
+    console.log ("lastIndexOf()");
+    console.log(myUnshift(array, 4));
 }
-const filterResult = myFilter(arr, x => x > 3);
-console.log(filterResult);
 //////////////////////////////////////////////
 
-//some()
-function mySome(arr, callback){
-    let newarr = [];
-        for(let i = 0; i < arr.length; i++){
-            newarr[i] = callback(arr[i]);
-            if(newarr[i] = callback(arr[i])){
-                return true;
-            }
-        }
-    return false
-}
-const someResult = mySome(arr, x => x > 2);
-console.log(someResult);
-//////////////////////////////////////////////
-
-//every()
-function myEvery(arr, callback){
-    let newarr = [];
-        for(let i = 0; i < arr.length; i++){
-            newarr[i] = callback(arr[i]);
-            if(newarr[i] = callback(arr[i])){
-                return true;
-            }
-            return false
-        }
-           
-}
-    const everyResult = myEvery(arr, (x) => x > 2);
-    console.log(everyResult);
-//////////////////////////////////////////////
-
-//reduce()
-function thisCallBack(element){  // very basic cb to just return element
+function element(element){ 
     return element;
- }
- 
- function myReduce(arr, callback){
-    //let newarr = [];      //returning a #, why do you need a new array?
-    let newarr = [];
-    let sum = 0;
-    for(let i = 0; i < arr.length; i++){
-        newarr[i] = callback(arr[i]);
-        sum += newarr[i];        // loop over array and get the sum
-        //num == cb(arr[i+1]);    // don't need to compare here 
-        }
-        return sum;  
- }
-    console.log(myReduce(arr,thisCallBack))
+}
 
-    
-//////////////////////////////////////////////
-/*
-//includes()
-function myIncludes(arr, callback){
-    let newarr = [];
+function myEach(arr, callback){
     for(let i = 0; i < arr.length; i++){
-        newarr[i] = callback(arr[i]);      
-        if(newarr[i] = callback[i]){
+        console.log(callback(arr[i]));
+    }
+}
+//////////////////////////////////////////////
+
+function myMap(arr, callback){
+    const newArr = [];
+    for(let i = 0; i < arr.length; i++){
+        newArr.push(callback(arr[i]));
+    }
+    return newArr;
+}
+//////////////////////////////////////////////
+
+function lessThan(element){
+    return element > 2;
+}
+function myFilter(arr, callback){
+    const newArr = [];
+    for(let i = 0; i < arr.length; i++){
+        if(callback(arr[i])) {
+            newArr.push(arr[i]);
+        }
+    }
+    return newArr;
+}
+//////////////////////////////////////////////
+
+function mySome(arr, callback){
+    for(let i = 0; i < arr.length; i++){
+        if(callback(arr[i])){
+            return true;
+        }
+    }
+    return false;
+}
+//////////////////////////////////////////////
+function myEvery(arr, callback){
+    for(let i = 0; i < arr.length; i++){
+        if(callback(arr[i])){
             return true;
         }
         return false;
     }
 }
+//////////////////////////////////////////////
 
-const includesResult = myIncludes(arr, 3);
-console.log(includesResult);*/
+function increment(element){ 
+    return element + 1;
+}
+function myReduce(arr, callback){
+    let result = 0;
+    for(let i = 0; i < arr.length; i++){
+        result += callback(arr[i]);
+    }
+    return result;
+}
+//////////////////////////////////////////////
+
+function myIncludes(arr, target){
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === target){
+            return true;
+        }
+    }
+    return false;
+}
+//////////////////////////////////////////////
+
+function myIndexOf(arr, target){
+    for(let i = 0; i < arr.length; i++){
+        if(arr[i] === target){
+            return i;
+        }
+    }
+    return -1;
+}
+//////////////////////////////////////////////
+
+function myPush(arr, element){
+    arr[arr.length] = element; 
+    return arr.length;
+}
+//////////////////////////////////////////////
+
+function myUnshift(arr, target){
+    for(let i = arr.length; i > 0; i--)
+        if(arr[i] === target)
+            return i;
+    return -1;
+}
+
+main()
