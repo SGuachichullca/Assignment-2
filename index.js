@@ -68,16 +68,32 @@ function myEvery(arr, callback){
 //reduce()
 function myReduce(arr, callback){
     let newarr = [];
-    let num = [];
-    for(let i = 0; i < arr.length; i++){
-        newarr[i] = callback(arr[i]);
-        num1[i];
-        num2[i++];
+    var reduce = callback(newarr[0], 0);    
+        for(let i = 0; i < arr.length; i++){
+            reduce = callback(arr[i],reduce);
         }
+        return reduce;
+}
+function sum(element, previousElement) {
+    return element + previousElement;
+}
+const reduceResult = myReduce(myReduce(arr,sum));
+console.log(reduceResult);
+
+    
+//////////////////////////////////////////////
+/*
+//includes()
+function myIncludes(arr, callback){
+    let newarr = [];
+    for(let i = 0; i < arr.length; i++){
+        newarr[i] = callback(arr[i]);      
+        if(newarr[i] = callback[i]){
+            return true;
+        }
+        return false;
+    }
 }
 
-    const reduceResult = myReduce(arr,(num1, num2) => num1 + num2);
-    console.log(reduceResult);
-    
-
-
+const includesResult = myIncludes(arr, 3);
+console.log(includesResult);*/
